@@ -2,10 +2,14 @@
 
 ## Overview
 
+Can you predict whether people got H1N1 and seasonal flu vaccines using information they shared about their backgrounds, opinions, and health behaviors?
+
 The 2009 H1N1 flu virus, also called "swine flu," first appeared in the spring of 2009 and quickly spread across the world.
 Vaccines for H1N1 were first publicly available in the United States in October 2009, when the United States government began a vaccination campaign. We will look at data from the National 2009 H1N1 Flu Survey collected to monitor vaccination rates during that campaign. This phone survey asked people whether they had received H1N1 and seasonal flu vaccines, in conjunction with information they shared about their lives, opinions, and behaviors. 
 
 ## Business and Data Understanding
+
+King County House Sales dataset is in the folder [Data](https://github.com/erdemiraysu/KingCountySales_Regression_Project2/tree/master/data). It contains house sale prices for King County sold between May 2014 and May 2015.
 
 The goal is to predict how likely individuals are to receive their H1N1 or seasonal flu vaccines. A better understanding of how these characteristics have been associated with personal vaccination patterns may provide guidance for future public health efforts.
 
