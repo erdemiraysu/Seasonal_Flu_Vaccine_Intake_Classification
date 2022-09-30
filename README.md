@@ -1,12 +1,17 @@
 # Flu_Shot_Learning_Predict_Seasonal_Flu_Vaccines_Project3
 
-
-
 ## Overview
-The goal is to predict how likely individuals are to receive their seasonal flu vaccines. 
-Target Variable: seasonal_vaccine - Whether respondent received seasonal flu vaccine or not.
+
+The 2009 H1N1 flu virus, also called "swine flu," first appeared in the spring of 2009 and quickly spread across the world.
+Vaccines for H1N1 were first publicly available in the United States in October 2009, when the United States government began a vaccination campaign. We will look at data from the National 2009 H1N1 Flu Survey collected to monitor vaccination rates during that campaign. This phone survey asked people whether they had received H1N1 and seasonal flu vaccines, in conjunction with information they shared about their lives, opinions, and behaviors. 
 
 ## Business and Data Understanding
+
+The goal is to predict how likely individuals are to receive their H1N1 or seasonal flu vaccines. A better understanding of how these characteristics have been associated with personal vaccination patterns may provide guidance for future public health efforts.
+
+Target Variable: 
+* `h1n1_vaccine` -  Whether respondent received H1N1 vaccine or not.
+* `seasonal_vaccine` - Whether respondent received seasonal flu vaccine or not.
 
 The features in this dataset:
 
