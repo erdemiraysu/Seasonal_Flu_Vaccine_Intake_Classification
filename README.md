@@ -1,4 +1,4 @@
-# Flu_Shot_Learning_Predict_Seasonal_Flu_Vaccines_Project3
+# Predict Seasonal Flu Vaccines Project3
 
 ## Overview
 
