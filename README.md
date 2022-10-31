@@ -1,26 +1,25 @@
 # Predict Seasonal Flu Vaccines Project3
 
 ## Overview
+***
+- **CDC wants to understand the leading factors in determining whether a person would take the sesoanal flu vaccine so that they could focus on the right strategies for their public efforts and vaccination campaigns to educate the public, raise awareness and maximize vaccine intake.**
 
-Can you predict whether people got H1N1 and seasonal flu vaccines using information they shared about their backgrounds, opinions, and health behaviors?
+- They also want to know the likelihood to receive the seasonal flu vaccine for specific demographic groups and have feedback about whether their efforts are successfull. 
 
-The 2009 H1N1 flu virus, also called "swine flu," first appeared in the spring of 2009 and quickly spread across the world.
-Vaccines for H1N1 were first publicly available in the United States in October 2009, when the United States government began a vaccination campaign. We will look at data from the National 2009 H1N1 Flu Survey collected to monitor vaccination rates during that campaign. This phone survey asked people whether they had received H1N1 and seasonal flu vaccines, in conjunction with information they shared about their lives, opinions, and behaviors. 
+- My goal is build a classifier to predict seasonal flu vaccination status using information they shared about their backgrounds, opinions, and health behaviors. My main purpose was to make predictions as accurately as possible.
 
 ## Business and Data Understanding
+***
+* The data was obtained from the **National 2009 H1N1 Flu Survey** provided at [DrivenData](https://www.drivendata.org/competitions/66/flu-shot-learning/). This phone survey asked people whether they had received H1N1 and seasonal flu vaccines, in conjunction with information they shared about their lives, opinions, and behaviors. 
 
-King County House Sales dataset is in the folder [Data](https://github.com/erdemiraysu/KingCountySales_Regression_Project2/tree/master/data). It contains house sale prices for King County sold between May 2014 and May 2015.
 
-The goal is to predict how likely individuals are to receive their H1N1 or seasonal flu vaccines. A better understanding of how these characteristics have been associated with personal vaccination patterns may provide guidance for future public health efforts.
+* In this project I will be focusing on `seasonal flu` only and information regarding individuals' opinions about the H1N1 vaccine were excluded from the analyses. The relevant variables/features included in the dataset are:
 
-Target Variable: 
-* `h1n1_vaccine` -  Whether respondent received H1N1 vaccine or not.
+**Target Feature**: 
 * `seasonal_vaccine` - Whether respondent received seasonal flu vaccine or not.
 
-The features in this dataset:
+**Predictive Features**:
 
-* `h1n1_concern` - Level of concern about the H1N1 flu. 0 = Not at all concerned; 1 = Not very concerned; 2 = Somewhat concerned; 3 = Very concerned.
-* `h1n1_knowledge` - Level of knowledge about H1N1 flu. 0 = No knowledge; 1 = A little knowledge; 2 = A lot of knowledge.
 * `behavioral_antiviral_meds` - Has taken antiviral medications. (binary)
 * `behavioral_avoidance` - Has avoided close contact with others with flu-like symptoms. (binary)
 * `behavioral_face_mask` - Has bought a face mask. (binary)
@@ -28,15 +27,11 @@ The features in this dataset:
 * `behavioral_large_gatherings` - Has reduced time at large gatherings. (binary)
 * `behavioral_outside_home` - Has reduced contact with people outside of own household. (binary)
 * `behavioral_touch_face` - Has avoided touching eyes, nose, or mouth. (binary)
-* `doctor_recc_h1n1` - H1N1 flu vaccine was recommended by doctor. (binary)
 * `doctor_recc_seasonal` - Seasonal flu vaccine was recommended by doctor. (binary)
 * `chronic_med_condition` - Has any of the following chronic medical conditions: asthma or an other lung condition, diabetes, a heart condition, a kidney condition, sickle cell anemia or other anemia, a neurological or neuromuscular condition, a liver condition, or a weakened immune system caused by a chronic illness or by medicines taken for a chronic illness. (binary)
 * `child_under_6_months` - Has regular close contact with a child under the age of six months. (binary)
 * `health_worker` - Is a healthcare worker. (binary)
 * `health_insurance` - Has health insurance. (binary)
-* `opinion_h1n1_vacc_effective` - Respondent's opinion about H1N1 vaccine effectiveness. 1 = Not at all effective; 2 = Not very effective; 3 = Don't know; 4 = Somewhat effective; 5 = Very effective.
-* `opinion_h1n1_risk` - Respondent's opinion about risk of getting sick with H1N1 flu without vaccine. 1 = Very Low; 2 = Somewhat low; 3 = Don't know; 4 = Somewhat high; 5 = Very high.
-* `opinion_h1n1_sick_from_vacc` - Respondent's worry of getting sick from taking H1N1 vaccine. 1 = Not at all worried; 2 = Not very worried; 3 = Don't know; 4 = Somewhat worried; 5 = Very worried.
 * `opinion_seas_vacc_effective` - Respondent's opinion about seasonal flu vaccine effectiveness. 1 = Not at all effective; 2 = Not very effective; 3 = Don't know; 4 = Somewhat effective; 5 = Very effective.
 * `opinion_seas_risk` - Respondent's opinion about risk of getting sick with seasonal flu without vaccine. 1 = Very Low; 2 = Somewhat low; 3 = Don't know; 4 = Somewhat high; 5 = Very high.
 * `opinion_seas_sick_from_vacc` - Respondent's worry of getting sick from taking seasonal flu vaccine. 1 = Not at all worried; 2 = Not very worried; 3 = Don't know; 4 = Somewhat worried; 5 = Very worried. 
@@ -56,17 +51,97 @@ The features in this dataset:
 * `employment_occupation` - Type of occupation of respondent. Values are represented as short random character strings.
 
 
+## Data Cleaning:
+***
+![DataMatrix_BeforeAfterCleaning](https://user-images.githubusercontent.com/61121277/199094926-05f3df1b-7487-45fd-a879-da41d8edff10.png)
 
-## Explain your stakeholder audience and dataset choice here
+
+## Preprocessing
+***
+### Binary Columns:
+* Many of variables in float type are actually **binary (yes/no)**. 
+* Given that the proportion of null values are not too high for these variables, the null values will be replaced with the **most frequent**. 
+
+    #### `health_insurance`:
+    * This variable will be treated as **binary (yes/no)**.
+    * A **predictive model** will be used to impute the missing values and then these values will be merged into the dataset. 
+
+### Numerical Columns:
+* Some of variables in float type are **ordinal** (some sense of ordering to its categories), so they will be treated as **numerical**. 
+* The null values will be replaced with the **Median**. 
+
+### Categorical Columns:
+* The variables in object type are **nominal** (no intrinsic ordering to its categories), so they will be treated as **categorical**. 
+* The null values will be replaced with a **contant('missing')** creating its own level before one-hot encoding these variables. 
+
+    #### `income_poverty`:
+    * This variable will be treated as **categorical**.
+    * A **predictive model** will be used to impute the missing values and then these values will be merged into the dataset. 
 
 
 
 ## Modeling
+***
+1. The dataset was cleaned and engineered.
+2. The data was split into training and test sets.
+3. The data was pre-processed. 
+4. Several types of classifiers were built, tuned (using GridSearchCV to test combinations of hyperparameters) and validated:
 
+    - Logistic Regression
+    - Decision Tree
+    - Random Forest
+    - XGradient Boosted
+    - Stacking Classifier (using above models)
+
+Roc_Auc was used as the scoring metric for tuning hyperparameters and evaluating model performance. 
 
 
 ## Evaluation
+***
+
+
+
+
+
+
+
 
 
 
 ## Conclusion
+***
+**You are more likely to get the vaccine if:**
+
+   - your doctor recommends the vaccine
+   - you have health insurance
+   - you think the vaccine is effective
+   - you think you can get sick from flu
+   - you are older
+   - you are a health worker
+   - 
+## Recommendations
+***
+* Target physicians by educating them on the importance of vaccination &  recommending it to their patients!
+* Target uninsured populations in the campaign, but better yet work on universal health coverage for all individuals and communities.
+* Focus your campaign on informing the people about the effectiveness and safety of the vaccine or their risk of falling ill and developing complications if not vaccinated. 
+* As a priority keep focusing your campaign on older age groups, because they are at more risk of developing flu-related complications compared to younger age groups.But also target younger people as a key demographic population to maximize the benefits of herd immunity since their vaccination rates are much lower.
+
+## Next Steps
+***
+* Encrypted employment industry, employment occupation, and geographical region info, hard to make any specific suggestions based on these features. 
+* Results on health insurance are not very reliable due to %40 of the data being null and being encoded using predictive modeling. More care needs to be given to this variable next time the survey is conducted. 
+* More recent data needs to be collected after the Covid-19 pandemic since the pandemic might have altered people’s attitude towards flu vaccine as well. 
+
+## Repository Structure
+    .
+    ├── images 
+    ├── data 
+    ├── Notebook.ipynb     
+    ├── Notebook.pdf 
+    ├── Presentation.pdf                                             
+    └── README.md   
+
+## Contact Info:
+* Email: erdemiraysu@gmail.com
+* GitHub: [@erdemiraysu](https://github.com/erdemiraysu/)
+* [LinkedIn](https://www.linkedin.com/in/aysuerdemir)
