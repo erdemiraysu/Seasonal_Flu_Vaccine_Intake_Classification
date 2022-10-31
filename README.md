@@ -101,15 +101,19 @@ Roc_Auc was used as the scoring metric for tuning hyperparameters and evaluating
 
 
 
+![Compare_RocCurve_Models](https://user-images.githubusercontent.com/61121277/199118343-d97584d7-d689-458e-8cb7-8cc42007e037.png)
 
 
-
-
-
+![XGBoost_FeatureImportance](https://user-images.githubusercontent.com/61121277/199118562-3e736c8c-2e4c-4412-9746-e5ba2d405fae.png)
 
 
 ## Conclusion
 ***
+
+
+![MostImportantFeatures_Probability_BarPlot](https://user-images.githubusercontent.com/61121277/199118595-397eb549-3f7b-417e-8e9a-52b583765cc4.png)
+
+
 **You are more likely to get the vaccine if:**
 
    - your doctor recommends the vaccine
