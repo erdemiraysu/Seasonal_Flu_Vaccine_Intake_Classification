@@ -58,28 +58,28 @@
 * Columns (variables) with more than 50% of the data missing were dropped (`emplyment_occupation` and `empltment_industry`). 
 * Rows (participants) with at least  1/3rd of the data missing were dropped (total of 761 people out of 26707). 
 * Null values for the two important variables (`heath_insurance` and `income_poverty`) which comprised %43 and %13 of the data, were imputed using a predcitive modeling approach. 
-* Below graph shows the data matrix before and after data cleaning:
+* Below graph shows the data matrix with null values before and after data cleaning:
 
-![DataMatrix_BeforeAfterCleaning](https://user-images.githubusercontent.com/61121277/199094926-05f3df1b-7487-45fd-a879-da41d8edff10.png)
+![DataMatrix_BeforeAfterCleaning](https://user-images.githubusercontent.com/61121277/199284666-c8f26292-406a-43c3-a6dd-36a780364683.png)
 
 ## Preprocessing
 ***
-### Binary (yes/no) Columns:
+#### Binary (yes/no) Columns:
 * Many of the variables in float type are actually binary (yes/no).
 * Given that the proportion of null values are not too high for these variables, the null values will be replaced with the **most frequent**. 
 
-    #### `health_insurance`:
+    ##### `health_insurance`:
     * A **predictive model** will be used to impute the missing values and then these values will be merged into the dataset. 
 
-### Numerical Columns:
+#### Numerical Columns:
 * Some of variables in float type are **ordinal** (some sense of ordering to its categories), so they will be treated as **numerical**. 
 * The null values will be replaced with the **Median**. 
 
-### Categorical Columns:
+#### Categorical Columns:
 * The variables in object type are **nominal** (no intrinsic ordering to its categories), so they will be treated as **categorical**. 
 * The null values will be replaced with a **contant('missing')** creating its own level before one-hot encoding these variables. 
 
-    #### `income_poverty`:
+    ##### `income_poverty`:
     * A **predictive model** will be used to impute the missing values and then these values will be merged into the dataset. 
 
 ## Modeling
@@ -96,8 +96,9 @@
 
 4. Scoring Metric: Roc_Auc was used afor tuning hyperparameters and evaluating model performance, because:
  
-    - We care equally about true positives and true negatives, and the roc curve gives a desirable balance between **sensitivity/recall (maximizing True positive Rate)** and and **1 - specificity  (minimizing False Positive Rate - Probability that a true negative will test positive)**.
-    - We want to utilizes **"probabilities"** of class prediction. Based on that, we’re able to more precisely evaluate and compare the models. 
+* We care equally about true positives and true negatives, and the roc curve gives a desirable balance between **sensitivity/recall (maximizing True positive Rate)** and and **1 - specificity  (minimizing False Positive Rate - Probability that a true negative will test positive)**
+
+* We want to utilizes **"probabilities"** of class prediction. Based on this, we’re able to more precisely evaluate and compare the models. 
 
 ## Evaluation
 ***
@@ -111,44 +112,39 @@
 ![XGBoost_FeatureImportance](https://user-images.githubusercontent.com/61121277/199118562-3e736c8c-2e4c-4412-9746-e5ba2d405fae.png)
 
 The most important 6 features in predciting whether a person would get the seasonal vacccine are:
-    - `doctor_recc_seasonal`
-    - `healht_insurance`
-    - `opinion_seas_vacc_effective`  
-    - `opinion_seas_risk`
-    - `age_group_65+ Years`
-    - `health_worker` 
 
-
-
-
+- `doctor_recc_seasonal`
+- `healht_insurance`
+- `opinion_seas_vacc_effective`  
+- `opinion_seas_risk`
+- `age_group_65+ Years`
+- `health_worker` 
 
 ## Conclusion
 ***
 
-
 ![MostImportantFeatures_Probability_BarPlot](https://user-images.githubusercontent.com/61121277/199118595-397eb549-3f7b-417e-8e9a-52b583765cc4.png)
 
+You are more likely to get the vaccine if:
 
-**You are more likely to get the vaccine if:**
-
-   - your doctor recommends the vaccine
-   - you have health insurance
-   - you think the vaccine is effective
-   - you think you can get sick from flu
-   - you are older
-   - you are a health worker
+- your doctor recommends the vaccine
+- you have health insurance
+- you think the vaccine is effective
+- you think you can get sick from flu
+- you are older
+- you are a health worker
    
 ## Recommendations
 ***
 * Target physicians by educating them on the importance of vaccination &  recommending it to their patients!
-* Target uninsured populations in the campaign, but better yet work on universal health coverage for all individuals and communities.
-* Focus your campaign on informing the people about the effectiveness and safety of the vaccine or their risk of falling ill and developing complications if not vaccinated. 
-* As a priority keep focusing your campaign on older age groups, because they are at more risk of developing flu-related complications compared to younger age groups.But also target younger people as a key demographic population to maximize the benefits of herd immunity since their vaccination rates are much lower.
+* Target uninsured populations in the campaign, but better yet work on universal health coverage.
+* Inform the people about the effectiveness and safety of the vaccine and their risk of falling ill and developing complications if not vaccinated.
+* As a priority keep focusing your campaign on older age groups, because they are at more risk of developing flu-related complications compared to younger age groups, and there is still room to progress even for those +65. But also target younger people as a key demographic population since their vaccination rates are much lower.
 
 ## Next Steps
 ***
 * Encrypted employment industry, employment occupation, and geographical region info, hard to make any specific suggestions based on these features. 
-* Results on health insurance are not very reliable due to %40 of the data being null and being encoded using predictive modeling. More care needs to be given to this variable next time the survey is conducted. 
+* Results on health insurance are not very reliable due to %40 of the data being null and being encoded using predictive modeling. More emphasis needs to be given to this variable next time the survey is conducted even it is a significant feature in predicting vaccine outcome. 
 * More recent data needs to be collected after the Covid-19 pandemic since the pandemic might have altered people’s attitude towards flu vaccine as well. 
 
 ## Repository Structure
