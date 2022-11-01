@@ -1,17 +1,19 @@
 # Predict Seasonal Flu Vaccines Project3
 
+
 ## Overview
 ***
 - **CDC wants to understand the leading factors in determining whether a person would take the sesoanal flu vaccine so that they could focus on the right strategies for their public efforts and vaccination campaigns to educate the public, raise awareness and maximize vaccine intake.**
 
 - They also want to know the likelihood to receive the seasonal flu vaccine for specific demographic groups and have feedback about whether their efforts are successfull. 
 
-- My goal is build a classifier to predict seasonal flu vaccination status using information they shared about their backgrounds, opinions, and health behaviors. My main purpose was to make predictions as accurately as possible.
+- **GOAL**: is build a classifier to predict seasonal flu vaccination status using information they shared about their backgrounds, opinions, and health behaviors. My main purpose was to make predictions as accurately as possible while balancing between sensitivity and specificity.
 
 ## Business and Data Understanding
 ***
-* The data was obtained from the **National 2009 H1N1 Flu Survey** provided at [DrivenData](https://www.drivendata.org/competitions/66/flu-shot-learning/). This phone survey asked people whether they had received H1N1 and seasonal flu vaccines, in conjunction with information they shared about their lives, opinions, and behaviors. 
+* The data was obtained from the **National 2009 H1N1 Flu Survey** provided at [DrivenData](https://www.drivendata.org/competitions/66/flu-shot-learning/). 
 
+* This phone survey contained dfata from 26707 particiants, and asked people whether they had received H1N1 and seasonal flu vaccines, in conjunction with information they shared about their lives, opinions, and behaviors. 
 
 * In this project I will be focusing on `seasonal flu` only and information regarding individuals' opinions about the H1N1 vaccine were excluded from the analyses. The relevant variables/features included in the dataset are:
 
@@ -53,17 +55,20 @@
 
 ## Data Cleaning:
 ***
-![DataMatrix_BeforeAfterCleaning](https://user-images.githubusercontent.com/61121277/199094926-05f3df1b-7487-45fd-a879-da41d8edff10.png)
+* Columns (variables) with more than 50% of the data missing were dropped (`emplyment_occupation` and `empltment_industry`). 
+* Rows (participants) with at least  1/3rd of the data missing were dropped (total of 761 people out of 26707). 
+* Null values for the two important variables (`heath_insurance` and `income_poverty`) which comprised %43 and %13 of the data, were imputed using a predcitive modeling approach. 
+* Below graph shows the data matrix before and after data cleaning:
 
+![DataMatrix_BeforeAfterCleaning](https://user-images.githubusercontent.com/61121277/199094926-05f3df1b-7487-45fd-a879-da41d8edff10.png)
 
 ## Preprocessing
 ***
-### Binary Columns:
-* Many of variables in float type are actually **binary (yes/no)**. 
+### Binary (yes/no) Columns:
+* Many of the variables in float type are actually binary (yes/no).
 * Given that the proportion of null values are not too high for these variables, the null values will be replaced with the **most frequent**. 
 
     #### `health_insurance`:
-    * This variable will be treated as **binary (yes/no)**.
     * A **predictive model** will be used to impute the missing values and then these values will be merged into the dataset. 
 
 ### Numerical Columns:
@@ -75,17 +80,13 @@
 * The null values will be replaced with a **contant('missing')** creating its own level before one-hot encoding these variables. 
 
     #### `income_poverty`:
-    * This variable will be treated as **categorical**.
     * A **predictive model** will be used to impute the missing values and then these values will be merged into the dataset. 
-
-
 
 ## Modeling
 ***
-1. The dataset was cleaned and engineered.
-2. The data was split into training and test sets.
-3. The data was pre-processed. 
-4. Several types of classifiers were built, tuned (using GridSearchCV to test combinations of hyperparameters) and validated:
+1. The data was split into training and test sets.
+2. The data was pre-processed. 
+3. Several types of classifiers were built, tuned (using GridSearchCV to test combinations of hyperparameters) and validated:
 
     - Logistic Regression
     - Decision Tree
@@ -93,18 +94,32 @@
     - XGradient Boosted
     - Stacking Classifier (using above models)
 
-Roc_Auc was used as the scoring metric for tuning hyperparameters and evaluating model performance. 
-
+4. Scoring Metric: Roc_Auc was used afor tuning hyperparameters and evaluating model performance, because:
+ 
+    - We care equally about true positives and true negatives, and the roc curve gives a desirable balance between **sensitivity/recall (maximizing True positive Rate)** and and **1 - specificity  (minimizing False Positive Rate - Probability that a true negative will test positive)**.
+    - We want to utilizes **"probabilities"** of class prediction. Based on that, we’re able to more precisely evaluate and compare the models. 
 
 ## Evaluation
 ***
 
+* **XGboost** gives the best performance on both train (tells if model is confident in it’s learning) and test datasets (tells if the results are negeralizable to an unknown dataset). 
 
 
 ![Compare_RocCurve_Models](https://user-images.githubusercontent.com/61121277/199118343-d97584d7-d689-458e-8cb7-8cc42007e037.png)
 
 
 ![XGBoost_FeatureImportance](https://user-images.githubusercontent.com/61121277/199118562-3e736c8c-2e4c-4412-9746-e5ba2d405fae.png)
+
+The most important 6 features in predciting whether a person would get the seasonal vacccine are:
+    - `doctor_recc_seasonal`
+    - `healht_insurance`
+    - `opinion_seas_vacc_effective`  
+    - `opinion_seas_risk`
+    - `age_group_65+ Years`
+    - `health_worker` 
+
+
+
 
 
 ## Conclusion
@@ -122,7 +137,7 @@ Roc_Auc was used as the scoring metric for tuning hyperparameters and evaluating
    - you think you can get sick from flu
    - you are older
    - you are a health worker
-   - 
+   
 ## Recommendations
 ***
 * Target physicians by educating them on the importance of vaccination &  recommending it to their patients!
