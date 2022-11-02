@@ -55,7 +55,7 @@
 
 ## Data Cleaning:
 ***
-* Columns (variables) with more than 50% of the data missing were dropped (`emplyment_occupation` and `empltment_industry`). 
+* Columns (variables) with more than 50% of the data missing were dropped (`employment_occupation` and `employment_industry`). 
 * Rows (participants) with at least  1/3rd of the data missing were dropped (total of 761 people out of 26707). 
 * Null values for the two important variables (`heath_insurance` and `income_poverty`) which comprised %43 and %13 of the data, were imputed using a predcitive modeling approach. 
 * Below graph shows the data matrix with null values before and after data cleaning:
@@ -74,6 +74,7 @@
 #### Numerical Columns:
 * Some of variables in float type are **ordinal** (some sense of ordering to its categories), so they will be treated as **numerical**. 
 * The null values will be replaced with the **Median**. 
+* Standard Scaling for the numerical variables only (since binary and categorical variables are already encoded as 0 and 1)
 
 #### Categorical Columns:
 * The variables in object type are **nominal** (no intrinsic ordering to its categories), so they will be treated as **categorical**. 
@@ -105,7 +106,7 @@
 
 ![Compare_RocCurve_Models](https://user-images.githubusercontent.com/61121277/199509396-629dd8df-bbb7-4715-85b8-e7626bf4c289.png)
 
-* **XGboost** gives the best performance on both train (tells if model is confident in it’s learning) and test datasets (tells if the results are negeralizable to an unknown dataset). It gives Roc_Auc values of %88 (on Train) and %87 (on test), which is considered **GOOD**.
+* **XGBoost** gives the best performance on both train (tells if model is confident in it’s learning) and test datasets (tells if the results are negeralizable to an unknown dataset). It gives Roc_Auc values of %88 (on Train) and %87 (on test), which is considered **GOOD**.
 
 ![XGB_Results1](https://user-images.githubusercontent.com/61121277/199540455-5f1c29eb-cead-421f-bae3-2dad7efe6304.png)
 ![XGB_Results2](https://user-images.githubusercontent.com/61121277/199540456-eebd5573-1875-47c2-8501-edcb9ef0633b.png)
@@ -117,7 +118,7 @@
 
 ![XGBoost_FeatureImportance](https://user-images.githubusercontent.com/61121277/199292805-566c278c-e1e8-4a4a-b643-044569ce0812.png)
 
-* The most important 6 features in predciting whether a person would get the seasonal vacccine are:
+* The most important 6 features in predicting whether a person would get the seasonal vacccine are:
 
 - `doctor_recc_seasonal`
 - `healht_insurance`
@@ -129,23 +130,23 @@
 ## Conclusion
 ***
 
-![MostImportantFeatures_Probability_BarPlot](https://user-images.githubusercontent.com/61121277/199118595-397eb549-3f7b-417e-8e9a-52b583765cc4.png)
+![MostImportantFeatures_Probability_BarPlot](https://user-images.githubusercontent.com/61121277/199609041-e03dd4f4-2340-4512-a684-608f90204cc6.png)
 
-You are more likely to get the vaccine if:
+You are more likely to get the vaccine if you:
 
-- your doctor recommends the vaccine
-- you have health insurance
-- you think the vaccine is effective
-- you think you can get sick from flu
-- you are older
-- you are a health worker
+- have a doctor recommending the vaccine
+- have health insurance
+- think the vaccine is effective
+- think you can get sick from flu
+- are older, especially +65
+- are a health worker
    
 ## Recommendations
 ***
-* Target physicians by educating them on the importance of vaccination &  recommending it to their patients!
-* Target uninsured populations in the campaign, but better yet work on universal health coverage.
-* Inform the people about the effectiveness and safety of the vaccine and their risk of falling ill and developing complications if not vaccinated.
-* As a priority keep focusing your campaign on older age groups, because they are at more risk of developing flu-related complications compared to younger age groups, and there is still room to progress even for those +65. But also target younger people as a key demographic population since their vaccination rates are much lower.
+* Educate the physicians on the importance of vaccination. Make sure they recommend it to their patients.
+* Consider offering universal health coverage. Inform the public that flu vaccine is covered by insurance. 
+* Inform people about the effectiveness and safety of the vaccine, and their risk of falling ill and developing complications if not vaccinated. 
+* Keep focusing on older age groups, because they are at more risk of developing flu-related complications. Also target younger people since their vaccination rates are much lower.
 
 ## Next Steps
 ***
