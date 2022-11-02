@@ -107,8 +107,8 @@
 
 * **XGboost** gives the best performance on both train (tells if model is confident in it’s learning) and test datasets (tells if the results are negeralizable to an unknown dataset). It gives Roc_Auc values of %88 (on Train) and %87 (on test), which is considered **GOOD**.
 
-![XGBoost_Results_1](https://user-images.githubusercontent.com/61121277/199292820-e56259e2-b6a1-4be8-ad3f-5f213c7375d1.png)
-![XGBoost_Results_2](https://user-images.githubusercontent.com/61121277/199292974-b6ed5864-3e66-49b0-b4bd-ef695d94705d.png)
+![XGB_Results1](https://user-images.githubusercontent.com/61121277/199540455-5f1c29eb-cead-421f-bae3-2dad7efe6304.png)
+![XGB_Results2](https://user-images.githubusercontent.com/61121277/199540456-eebd5573-1875-47c2-8501-edcb9ef0633b.png)
 
 * Results from the best fitting model on the test set are:
     - **accuracy score of 79%**, 
