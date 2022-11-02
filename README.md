@@ -103,10 +103,7 @@
 ## Evaluation
 ***
 
-
-
-
-![Compare_RocCurve_Models](https://user-images.githubusercontent.com/61121277/199292751-bfc0ff45-8ff0-49d0-917f-2224ba3c2ee6.png)
+![Compare_RocCurve_Models](https://user-images.githubusercontent.com/61121277/199509396-629dd8df-bbb7-4715-85b8-e7626bf4c289.png)
 * **XGboost** gives the best performance on both train (tells if model is confident in it’s learning) and test datasets (tells if the results are negeralizable to an unknown dataset). 
 
 ![XGBoost_Results_1](https://user-images.githubusercontent.com/61121277/199292820-e56259e2-b6a1-4be8-ad3f-5f213c7375d1.png)
