@@ -104,14 +104,20 @@
 ***
 
 ![Compare_RocCurve_Models](https://user-images.githubusercontent.com/61121277/199509396-629dd8df-bbb7-4715-85b8-e7626bf4c289.png)
-* **XGboost** gives the best performance on both train (tells if model is confident in it’s learning) and test datasets (tells if the results are negeralizable to an unknown dataset). 
+
+* **XGboost** gives the best performance on both train (tells if model is confident in it’s learning) and test datasets (tells if the results are negeralizable to an unknown dataset). It gives Roc_Auc values of %88 (on Train) and %87 (on test), which is considered **GOOD**.
 
 ![XGBoost_Results_1](https://user-images.githubusercontent.com/61121277/199292820-e56259e2-b6a1-4be8-ad3f-5f213c7375d1.png)
 ![XGBoost_Results_2](https://user-images.githubusercontent.com/61121277/199292974-b6ed5864-3e66-49b0-b4bd-ef695d94705d.png)
-* Results from the best fitting model gives an Accuracy score of 79%, Sensitivity/Recall score of 79% and a Specificity scores of 82%.
+
+* Results from the best fitting model on the test set are:
+    - **accuracy score of 79%**, 
+    - **sensitivity/recall score of 79%** 
+    - **specificity score of 82%** 
 
 ![XGBoost_FeatureImportance](https://user-images.githubusercontent.com/61121277/199292805-566c278c-e1e8-4a4a-b643-044569ce0812.png)
-The most important 6 features in predciting whether a person would get the seasonal vacccine are:
+
+* The most important 6 features in predciting whether a person would get the seasonal vacccine are:
 
 - `doctor_recc_seasonal`
 - `healht_insurance`
