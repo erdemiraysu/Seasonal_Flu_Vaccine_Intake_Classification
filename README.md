@@ -57,7 +57,7 @@
 ***
 * Columns (variables) with more than 50% of the data missing were dropped (`employment_occupation` and `employment_industry`). 
 * Rows (participants) with at least  1/3rd of the data missing were dropped (total of 761 people out of 26707). 
-* Null values for the two important variables (`heath_insurance` and `income_poverty`) which comprised %43 and %13 of the data, were imputed using a predcitive modeling approach. 
+* Null values for the two important variables (`heath_insurance` and `income_poverty`) which comprised 43% and 13% of the data, were imputed using a predcitive modeling approach. 
 * Below graph shows the data matrix with null values before and after data cleaning:
 
 ![DataMatrix_BeforeAfterCleaning](https://user-images.githubusercontent.com/61121277/199284666-c8f26292-406a-43c3-a6dd-36a780364683.png)
@@ -106,7 +106,7 @@
 
 ![Compare_RocCurve_Models](https://user-images.githubusercontent.com/61121277/199509396-629dd8df-bbb7-4715-85b8-e7626bf4c289.png)
 
-* **XGBoost** gives the best performance on both train (tells if model is confident in it’s learning) and test datasets (tells if the results are negeralizable to an unknown dataset). It gives Roc_Auc values of %88 (on Train) and %87 (on test), which is considered **GOOD**.
+* **XGBoost** gives the best performance on both train (tells if model is confident in it’s learning) and test datasets (tells if the results are negeralizable to an unknown dataset). It gives Roc_Auc values of 88% (on Train) and 87% (on test), which is considered **GOOD**.
 
 ![XGB_Results1](https://user-images.githubusercontent.com/61121277/199540455-5f1c29eb-cead-421f-bae3-2dad7efe6304.png)
 ![XGB_Results2](https://user-images.githubusercontent.com/61121277/199540456-eebd5573-1875-47c2-8501-edcb9ef0633b.png)
@@ -151,7 +151,7 @@ You are more likely to get the vaccine if you:
 ## Next Steps
 ***
 * Encrypted employment industry, employment occupation, and geographical region info, hard to make any specific suggestions based on these features. 
-* Results on health insurance are not very reliable due to %40 of the data being null and being encoded using predictive modeling. More emphasis needs to be given to this variable next time the survey is conducted even it is a significant feature in predicting vaccine outcome. 
+* Results on health insurance are not very reliable due to 40% of the data being null and being encoded using predictive modeling. More emphasis needs to be given to this variable next time the survey is conducted even it is a significant feature in predicting vaccine outcome. 
 * More recent data needs to be collected after the Covid-19 pandemic since the pandemic might have altered people’s attitude towards flu vaccine as well. 
 
 ## Repository Structure
