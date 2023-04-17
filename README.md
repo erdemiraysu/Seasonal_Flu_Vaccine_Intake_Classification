@@ -1,4 +1,4 @@
-# Predict Seasonal Flu Vaccines Project3
+# Predict Seasonal Flu Vaccines Intake using Classification
 
 
 ## Overview
@@ -155,13 +155,13 @@ You are more likely to get the vaccine if you:
 * More recent data needs to be collected after the Covid-19 pandemic since the pandemic might have altered people’s attitude towards flu vaccine as well. 
 
 ## Repository Structure
-    .
-    ├── images 
-    ├── data 
-    ├── Notebook.ipynb     
-    ├── Notebook.pdf 
-    ├── Presentation.pdf                                             
-    └── README.md   
+
+    ├── images                          Images folder, containing all referenced image files
+    ├── data                            Data folder, included in this repository
+    ├── Notebook.ipynb                  Main Jupyter notebook, contains analysis
+    ├── Notebook.pdf                    Pdf version of main Jupyter notebook
+    ├── presentation.pdf                PDF Version of project presentation                             
+    ├── README.md                       The top-level README
 
 ## Contact Info:
 * Email: erdemiraysu@gmail.com
